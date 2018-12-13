@@ -2,12 +2,45 @@
 
 
 DEFAULT_STORED_CORDS = {
-	'risk-overview':[30, 55],
-	'factors-dattr': [387, 82],
-	'factors-sample': [387, 297],
-	'factors-temporal': [30, 237],
-	'controls-data':[28, 528],
-	'controls-privacy': [389, 501],
+	'controls-data':[156, 588],
+	'controls-privacy':[26, 343],
+	'factors-dattr':[570, 99],
+	'factors-sample':[822, 340],
+	'factors-temporal':[618, 587],
+	'infographic_title':[408, 375],
+	'risk-overview':[165, 123],
+	'section_title_controls_data':[157, 551],
+	'section_title_controls_privacy':[27, 307],
+	'section_title_factors_dattr':[569, 63],
+	'section_title_factors_sample':[821, 304],
+	'section_title_factors_temporal':[618, 550],
+	'section_title_privacyrisk':[165, 87],
+}
+
+THEME_COLOR = {
+	'infographic_title':"color-purple",
+	'section_title_privacyrisk':"color-red",
+	'section_title_factors_temporal':"color-blue",
+	'section_title_factors_sample':"color-blue",
+	'section_title_factors_dattr':"color-blue",
+	'section_title_controls_data':"color-green",
+	'section_title_controls_privacy':"color-green",
+	'controls-data':"color-green",
+	'controls-privacy':"color-green",
+	'factors-dattr':"color-blue",
+	'factors-sample':"color-blue",
+	'factors-temporal':"color-blue",
+	'risk-overview':"color-red",
+}
+
+HEADER_TEXT = {
+	'infographic_title':"Practical Approaches to Big Data Privacy Over Time",
+	'section_title_privacyrisk':"Privacy Risks",
+	'section_title_factors_temporal':"Temporal Privacy Factors",
+	'section_title_factors_sample':"Population Privacy Factors",
+	'section_title_factors_dattr':"Attribute Privacy Factors",
+	'section_title_controls_data':"Data Controls",
+	'section_title_controls_privacy':"PrivacyControls",
 }
 
 ELEMENT_TEXT = {
@@ -53,7 +86,7 @@ ELEMENT_ICON = {
 
 function retrieveStoredCords(lsid) {
 	lsdata = localStorage.getItem(lsid);
-	if (lsdata === null) {
+	if (lsdata === null || lsdata === undefined || lsdata.length === 0) {
 		return DEFAULT_STORED_CORDS;
 	}
 	return lsdata.split(";").reduce(function(cords,ele){
@@ -64,6 +97,7 @@ function retrieveStoredCords(lsid) {
 }
 
 window.addEventListener('load',function(event) {
+	
 	(function() {
 		let pageID = "BigDataPrivacy";
 		var cords = retrieveStoredCords(pageID)
@@ -129,6 +163,14 @@ window.addEventListener('load',function(event) {
 	for (k in ELEMENT_ICON) {
 		let p = document.getElementById(k).getElementsByClassName('icon-path')[0];
 		p.setAttribute('d',ELEMENT_ICON[k]); 
+	}
+	for (k in HEADER_TEXT) {
+		let h = document.getElementById(k)
+		h.innerHTML = HEADER_TEXT[k];
+	}
+	for (k in THEME_COLOR) {
+		let h = document.getElementById(k)
+		h.classList.add(THEME_COLOR[k])
 	}
 	console.log('window.load');
 });

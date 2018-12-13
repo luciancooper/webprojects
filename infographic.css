@@ -19,32 +19,58 @@ body {
 	
 }
 
+#infographic_stack:before {
+	content:"Drag Elements to move them around";
+	position:absolute;
+	bottom:100%;
+	left:0px;
+	
+}
 #infographic_stack {
 	position:relative;
-	width:780px;
-	height:800px;
+	/*width:780px;
+	height:800px;*/
+	width:1200px;
+	height:1000px;
+	
 	border:1px solid black;
 	margin:20px;
 	margin-left:auto;
 	margin-right:auto;
 	background:#FFF;
+	font-family:Helvetica;
 	
 }
 
-#element_layer {
-	position:relative;
+#infographic_stack > section {
+	position:absolute;
 	margin:0px;
 	width:100%;
 	height:100%;
 	box-sizing:border-box;
-	font-family:Helvetica;
+	pointer-events: none;
 }
+
+#infographic_stack > section > * {
+	pointer-events:all;
+}
+
+
+#header_layer > .section-title,
 #element_layer > .info-element,
 #element_layer > .info-column,
 #element_layer > .info-row>.info-element {
 	width:340px;
 }
 
+/* THEME*/
+
+
+.info-column>.info-element+.info-element:before {
+	background:#B2B2B2;
+}
+#header_layer > .infographic-title,
+#header_layer > .section-title,
 #element_layer > .info-element,
 #element_layer > .info-column,
 #element_layer > .info-row {
@@ -52,9 +78,72 @@ body {
 	border-radius:5px;
 	background-color:#FFFFFF;
 }
+#header_layer > .infographic-title.color-red,
+#header_layer > .section-title.color-red,
+#element_layer > .info-element.color-red,
+#element_layer > .info-column.color-red,
+#element_layer > .info-row.color-red {
+	border:1px solid #ff3333;
+	background-color:#ff9999;
+}
+#element_layer > .info-column.color-red>.info-element+.info-element:before {
+	background-color:#ff3333;
+}
+#header_layer > .infographic-title.color-green,
+#header_layer > .section-title.color-green,
+#element_layer > .info-element.color-green,
+#element_layer > .info-column.color-green,
+#element_layer > .info-row.color-green {
+	border:1px solid #00b300;
+	background-color:#ccffcc;
+}
+#element_layer > .info-column.color-green>.info-element+.info-element:before {
+	background-color:#00b300;
+}
+#header_layer > .infographic-title.color-blue,
+#header_layer > .section-title.color-blue,
+#element_layer > .info-element.color-blue,
+#element_layer > .info-column.color-blue,
+#element_layer > .info-row.color-blue {
+	border:1px solid #4dc3ff;
+	background-color:#cceeff;
+}
+#element_layer > .info-column.color-blue>.info-element+.info-element:before {
+	background-color:#4dc3ff;
+}
+#header_layer > .infographic-title.color-purple,
+#header_layer > .section-title.color-purple,
+#element_layer > .info-element.color-purple,
+#element_layer > .info-column.color-purple,
+#element_layer > .info-row.color-purple {
+	border:1px solid #4d4dff;
+	background-color:#ccccff;
+}
+#element_layer > .info-column.color-purple>.info-element+.info-element:before {
+	background-color:#4d4dff;
+}
 
 
-div.info-element {
+
+#infographic_title {
+	padding:10px;
+	width:350px;
+	text-align:left;
+	box-sizing: border-box;
+    font-weight: bold;
+    font-size: 25px;
+	text-align:center;
+}
+.section-title {
+	padding:2px 5px;
+	text-align:left;
+	box-sizing: border-box;
+    font-weight: bold;
+    font-size: 20px;
+    
+}
+
+.info-element {
 	display:flex;
 	padding:5px;
 	flex-flow:column nowrap;
@@ -63,26 +152,28 @@ div.info-element {
 	user-select: none;
 	background-color: transparent;
 	position:relative;
+	box-sizing: border-box;
 	
 }
-section.info-row,
-section.info-column {
+.info-row,
+.info-column {
 	display:flex;
 	align-content: stretch;
 	align-items: stretch;
+	box-sizing:border-box;
 }
 
-section.info-row {
+.info-row {
 	flex-flow:row nowrap;
 }
-section.info-column {
+.info-column {
 	flex-flow:column nowrap;
 }
 
-section.info-column>.info-element+.info-element {
+.info-column>.info-element+.info-element {
 	margin-top:6px;
 }
-section.info-column>.info-element+.info-element:before {
+.info-column>.info-element+.info-element:before {
 	content:"";
 	background:#B2B2B2;
 	height:1px;
@@ -103,7 +194,7 @@ section.info-column>.info-element+.info-element:before {
 .info-element>header>span.icon {
 	width:25px;
 	height:25px;
-	border:1px solid #E4E4E4;
+	border:1px solid inherit;
 }
 .info-element>header>h3 {
 	margin:0px;
